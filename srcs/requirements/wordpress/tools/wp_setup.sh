@@ -63,5 +63,6 @@ fi
 # Ensure correct permissions
 chown -R www-data:www-data /var/www/wordpress
 
-echo "[WordPress] Starting PHP-FPM 7.4 in foreground on port 9000..."
-exec php-fpm7.4 -F
+echo "[WordPress] Starting PHP-FPM 8.2 in foreground on port 9000..."
+exec php-fpm8.2 -F
+

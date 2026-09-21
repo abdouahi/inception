@@ -1,9 +1,9 @@
-*This project has been created as part of the 42 curriculum by abdouahi.*
+*This project has been created as part of the 1337 curriculum by abdouahi.*
 
 # Inception - System Administration & Docker Infrastructure
 
 ## Description
-The **Inception** project is a core system administration challenge in the 42 curriculum designed to deepen understanding of virtualization, containerization, and secure service architecture using **Docker** and **Docker Compose**.
+The **Inception** project is a core system administration challenge in the 1337 curriculum designed to deepen understanding of virtualization, containerization, and secure service architecture using **Docker** and **Docker Compose**.
 
 The project establishes a secure, robust, and isolated multi-container LEMP-like stack without relying on pre-built application images from Docker Hub. Every service image is built from scratch using custom `Dockerfile`s based on the penultimate stable release of Debian (**Debian Bullseye**).
 
@@ -116,4 +116,4 @@ In compliance with 42 AI guidelines:
   - Managed entirely by the Docker daemon in `/var/lib/docker/volumes/`, offering lifecycle decoupling from host directory structures.
 - **Bind Mounts**:
   - Directly maps specific host paths (such as `/home/abdo/data/wordpress` and `/home/abdo/data/mariadb`) into container filesystems.
-  - Ensures direct host-level inspection, persistent survival across container re-creations, and explicit storage locality mandated by the 42 subject.
+  - Ensures direct host-level inspection, persistent survival across container re-creations, and explicit storage locality mandated by the 1337 subject.

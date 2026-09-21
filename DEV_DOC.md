@@ -27,7 +27,7 @@ This documentation provides technical specifications, development guidelines, an
    DATA_PATH=/home/abdo/data
    MYSQL_DATABASE=inception_db
    MYSQL_USER=inception_user
-   WP_TITLE=Inception 42 - abdouahi
+   WP_TITLE=Inception 1337 - abdouahi
    WP_ADMIN_USER=chief_abdouahi
    WP_ADMIN_EMAIL=chief_abdouahi@student.42.fr
    WP_USER=author_abdouahi

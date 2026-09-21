@@ -2,11 +2,10 @@ NAME = inception
 
 COMPOSE_FILE = ./srcs/docker-compose.yml
 ENV_FILE = ./srcs/.env
-DATA_DIR_WP = /home/abdo/data/wordpress
-DATA_DIR_DB = /home/abdo/data/mariadb
+DATA_DIR_WP = /home/kali/data/wordpress
+DATA_DIR_DB = /home/kali/data/mariadb
 
-# Use docker compose if available, fallback to docker-compose
-DOCKER_COMPOSE = $(shell which docker-compose 2>/dev/null || echo "docker compose")
+DOCKER_COMPOSE = docker compose
 
 all: build up
 
@@ -43,7 +42,8 @@ fclean: clean
 	@docker rmi -f $$(docker images -qa) 2>/dev/null || true
 	@docker volume rm $$(docker volume ls -q) 2>/dev/null || true
 	@docker system prune -a --volumes -f 2>/dev/null || true
-	@sudo rm -rf $(DATA_DIR_WP) $(DATA_DIR_DB) 2>/dev/null || rm -rf $(DATA_DIR_WP) $(DATA_DIR_DB) 2>/dev/null || true
+	@sudo rm -rf $(DATA_DIR_WP) $(DATA_DIR_DB) 2>/dev/null || \
+	rm -rf $(DATA_DIR_WP) $(DATA_DIR_DB) 2>/dev/null || true
 
 re: fclean all
 
