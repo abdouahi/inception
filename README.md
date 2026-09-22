@@ -11,7 +11,7 @@ The project establishes a secure, robust, and isolated multi-container LEMP-like
 - **NGINX**: Secure reverse proxy and TLS termination gateway on port `443` (TLSv1.2/1.3 only).
 - **WordPress + PHP-FPM**: Dynamic application engine handling WordPress execution over FastCGI (port `9000`).
 - **MariaDB**: Relational database storage accessible exclusively within the internal docker network (port `3306`).
-- **Docker Volumes**: Host-bound persistent storage paths (`/home/abdo/data/wordpress` and `/home/abdo/data/mariadb`).
+- **Docker Volumes**: Host-bound persistent storage paths (`/home/kali/data/wordpress` and `/home/kali/data/mariadb`).
 - **Docker Network**: Custom isolated bridge network (`inception_network`) connecting all services.
 
 ---
@@ -115,5 +115,5 @@ In compliance with 42 AI guidelines:
 - **Docker Named Volumes**:
   - Managed entirely by the Docker daemon in `/var/lib/docker/volumes/`, offering lifecycle decoupling from host directory structures.
 - **Bind Mounts**:
-  - Directly maps specific host paths (such as `/home/abdo/data/wordpress` and `/home/abdo/data/mariadb`) into container filesystems.
+  - Directly maps specific host paths (such as `/home/kali/data/wordpress` and `/home/kali/data/mariadb`) into container filesystems.
   - Ensures direct host-level inspection, persistent survival across container re-creations, and explicit storage locality mandated by the 1337 subject.
