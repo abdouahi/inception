@@ -87,14 +87,14 @@ volumes:
     driver_opts:
       type: none
       o: bind
-      device: /home/kali/data/mariadb
+      device: /home/abdouahi/data/mariadb
   wordpress_data:
     name: wordpress_data
     driver: local
     driver_opts:
       type: none
       o: bind
-      device: /home/kali/data/wordpress
+      device: /home/abdouahi/data/wordpress
 
 secrets:
   db_password:
