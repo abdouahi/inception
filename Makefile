@@ -2,15 +2,16 @@ NAME = inception
 
 COMPOSE_FILE = ./srcs/docker-compose.yml
 ENV_FILE = ./srcs/.env
-DATA_DIR_WP = /home/kali/data/wordpress
-DATA_DIR_DB = /home/kali/data/mariadb
+DATA_DIR_WP = /home/abdouahi/data/wordpress
+DATA_DIR_DB = /home/abdouahi/data/mariadb
 
 DOCKER_COMPOSE = docker compose
 
 all: build up
 
 init_dirs:
-	@mkdir -p $(DATA_DIR_WP) $(DATA_DIR_DB)
+	@sudo mkdir -p $(DATA_DIR_WP) $(DATA_DIR_DB)
+	@sudo chown -R $(USER):$(USER) /home/abdouahi/data 2>/dev/null || true
 
 build: init_dirs
 	$(DOCKER_COMPOSE) -f $(COMPOSE_FILE) build
