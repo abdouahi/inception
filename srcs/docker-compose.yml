@@ -1,3 +1,4 @@
+
 services:
   mariadb:
     container_name: mariadb
@@ -45,8 +46,6 @@ services:
     restart: on-failure
     depends_on:
       - wordpress
-    env_file:
-      - .env
     ports:
       - "443:443"
     volumes:
@@ -56,31 +55,26 @@ services:
 
 networks:
   inception_network:
-    name: inception_network
     driver: bridge
 
 volumes:
   mariadb_data:
     name: mariadb_data
     driver: local
-    driver_opts:
-      type: none
-      o: bind
-      device: /home/abdouahi/data/mariadb
+
   wordpress_data:
     name: wordpress_data
     driver: local
-    driver_opts:
-      type: none
-      o: bind
-      device: /home/abdouahi/data/wordpress
 
 secrets:
   db_password:
     file: ../secrets/db_password.txt
+
   db_root_password:
     file: ../secrets/db_root_password.txt
+
   wp_admin_password:
     file: ../secrets/wp_admin_password.txt
+
   wp_user_password:
     file: ../secrets/wp_user_password.txt
