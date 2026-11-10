@@ -1,17 +1,17 @@
-*This project has been created as part of the 1337 curriculum by abdouahi.*
+*This project has been created as part of the 42 curriculum by abdouahi.*
 
 # Inception - System Administration & Docker Infrastructure
 
 ## Description
-The **Inception** project is a core system administration challenge in the 1337 curriculum designed to deepen understanding of virtualization, containerization, and secure service architecture using **Docker** and **Docker Compose**.
+The **Inception** project is a core system administration challenge in the 42 curriculum designed to deepen understanding of virtualization, containerization, and secure service architecture using **Docker** and **Docker Compose**.
 
-The project establishes a secure, robust, and isolated multi-container LEMP-like stack without relying on pre-built application images from Docker Hub. Every service image is built from scratch using custom `Dockerfile`s based on the penultimate stable release of Debian (**Debian Bullseye**).
+The project establishes a secure, robust, and isolated multi-container LEMP-like stack without relying on pre-built application images from Docker Hub. Every service image is built from scratch using custom `Dockerfile`s based on the penultimate stable release of Debian (**Debian Bookworm**).
 
 ### Architectural Stack
 - **NGINX**: Secure reverse proxy and TLS termination gateway on port `443` (TLSv1.2/1.3 only).
 - **WordPress + PHP-FPM**: Dynamic application engine handling WordPress execution over FastCGI (port `9000`).
 - **MariaDB**: Relational database storage accessible exclusively within the internal docker network (port `3306`).
-- **Docker Volumes**: Host-bound persistent storage paths (`/home/kali/data/wordpress` and `/home/kali/data/mariadb`).
+- **Docker Volumes**: Host-bound persistent storage paths (`/home/abdouahi/data/wordpress` and `/home/abdouahi/data/mariadb`).
 - **Docker Network**: Custom isolated bridge network (`inception_network`) connecting all services.
 
 ---
@@ -115,5 +115,5 @@ In compliance with 42 AI guidelines:
 - **Docker Named Volumes**:
   - Managed entirely by the Docker daemon in `/var/lib/docker/volumes/`, offering lifecycle decoupling from host directory structures.
 - **Bind Mounts**:
-  - Directly maps specific host paths (such as `/home/kali/data/wordpress` and `/home/kali/data/mariadb`) into container filesystems.
-  - Ensures direct host-level inspection, persistent survival across container re-creations, and explicit storage locality mandated by the 1337 subject.
+  - Directly maps specific host paths (such as `/home/abdouahi/data/wordpress` and `/home/abdouahi/data/mariadb`) into container filesystems.
+  - Ensures direct host-level inspection, persistent survival across container re-creations, and explicit storage locality mandated by the 42 subject.

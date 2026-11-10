@@ -1,17 +1,18 @@
 #!/bin/bash
 set -e
 
-# Create SSL directory if missing
-mkdir -p /etc/nginx/ssl
+if [ ! -f /etc/.firstrun ]; then
 
-# Generate self-signed SSL certificate if it does not already exist
-if [ ! -f /etc/nginx/ssl/inception.crt ] || [ ! -f /etc/nginx/ssl/inception.key ]; then
-    echo "[NGINX] Generating self-signed SSL certificate for ${DOMAIN_NAME:-abdouahi.42.fr}..."
-    openssl req -x509 -nodes -days 365 -newkey rsa:2048 \
-        -keyout /etc/nginx/ssl/inception.key \
-        -out /etc/nginx/ssl/inception.crt \
-        -subj "/C=MA/ST=Tetouan/L=Tetouan/O=1337/OU=student/CN=${DOMAIN_NAME:-abdouahi.42.fr}"
+# generate ssl cetificate
+mkdir -p /etc/nginx/ssl/
+openssl req -x509 -nodes -days 365 -newkey rsa:4096  \
+            -out /etc/nginx/ssl/cert.crt \
+            -keyout /etc/nginx/ssl/cert.key \
+            -subj "/CN=${DOMAIN_NAME}" >/dev/null 2>/dev/null
+
+    touch /etc/.firstrun
 fi
 
-echo "[NGINX] Starting NGINX in foreground on port 443..."
+# Start NGINX in the foreground as PID 1 so Docker can manage the process
 exec nginx -g 'daemon off;'
+

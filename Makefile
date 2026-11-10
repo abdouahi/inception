@@ -1,6 +1,12 @@
 COMPOSE_FILE = srcs/docker-compose.yml
+DATA_DIR = /home/abdouahi/data
 
-up:
+all: up
+
+init_dirs:
+	mkdir -p $(DATA_DIR)/mariadb $(DATA_DIR)/wordpress
+
+up: init_dirs
 	docker compose -f $(COMPOSE_FILE) up --build -d
 
 down:
@@ -13,3 +19,5 @@ fclean:
 	docker compose -f $(COMPOSE_FILE) down --rmi local --volumes --remove-orphans
 
 re: fclean up
+
+.PHONY: all init_dirs up down clean fclean re
