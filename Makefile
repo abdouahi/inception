@@ -1,51 +1,15 @@
-NAME = inception
+COMPOSE_FILE = srcs/docker-compose.yml
 
-COMPOSE_FILE = ./srcs/docker-compose.yml
-ENV_FILE = ./srcs/.env
-DATA_DIR_WP = /home/abdouahi/data/wordpress
-DATA_DIR_DB = /home/abdouahi/data/mariadb
-
-DOCKER_COMPOSE = docker compose
-
-all: build up
-
-init_dirs:
-	@sudo mkdir -p $(DATA_DIR_WP) $(DATA_DIR_DB)
-	@sudo chown -R $(USER):$(USER) /home/abdouahi/data 2>/dev/null || true
-
-build: init_dirs
-	$(DOCKER_COMPOSE) -f $(COMPOSE_FILE) build
-
-up: init_dirs
-	$(DOCKER_COMPOSE) -f $(COMPOSE_FILE) up -d
+up:
+	docker compose -f $(COMPOSE_FILE) up --build -d
 
 down:
-	$(DOCKER_COMPOSE) -f $(COMPOSE_FILE) down
+	docker compose -f $(COMPOSE_FILE) down
 
-stop:
-	$(DOCKER_COMPOSE) -f $(COMPOSE_FILE) stop
+clean:
+	docker compose -f $(COMPOSE_FILE) down --remove-orphans
 
-start:
-	$(DOCKER_COMPOSE) -f $(COMPOSE_FILE) start
+fclean:
+	docker compose -f $(COMPOSE_FILE) down --rmi local --volumes --remove-orphans
 
-status ps:
-	$(DOCKER_COMPOSE) -f $(COMPOSE_FILE) ps
-
-logs:
-	$(DOCKER_COMPOSE) -f $(COMPOSE_FILE) logs -f
-
-clean: down
-	@docker stop $$(docker ps -qa) 2>/dev/null || true
-	@docker rm $$(docker ps -qa) 2>/dev/null || true
-	@docker network rm inception_network 2>/dev/null || true
-
-fclean: clean
-	@docker rmi -f $$(docker images -qa) 2>/dev/null || true
-	@docker volume rm $$(docker volume ls -q) 2>/dev/null || true
-	@docker system prune -a --volumes -f 2>/dev/null || true
-	@sudo rm -rf $(DATA_DIR_WP) $(DATA_DIR_DB) 2>/dev/null || \
-	rm -rf $(DATA_DIR_WP) $(DATA_DIR_DB) 2>/dev/null || true
-
-re: fclean all
-
-.PHONY: all build up down stop start status ps logs clean fclean re init_dirs
+re: fclean up

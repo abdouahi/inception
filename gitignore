@@ -1,0 +1,7 @@
+# Secrets
+secrets/
+credentials.txt
+
+# Environment variables
+srcs/.env
+.env
